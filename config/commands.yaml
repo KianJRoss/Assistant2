@@ -1,0 +1,224 @@
+# Voice Assistant Commands Configuration
+# Place this file at: config/commands.yaml
+
+commands:
+  # Audio Control Commands
+  - key: voicemeeter_control
+    name: Voicemeeter Audio Control
+    description: Control Voicemeeter audio routing, muting, and volume levels
+    keywords: ["patch", "mute", "unmute", "volume", "audio", "strip", "bus", "route", "cut"]
+    category: audio
+    environment: python
+    script_path: scripts/audio/voicemeeter_control.py
+    ai_parsing: true
+    modes: ["general", "streaming"]
+    metadata:
+      supports_natural_language: true
+      examples:
+        - "patch strip 1 to A1"
+        - "mute all strips"
+        - "set volume bus 2 to -10"
+
+  - key: system_volume
+    name: System Volume Control
+    description: Control system master volume and per-app volumes
+    keywords: ["system volume", "master volume", "app volume"]
+    category: audio
+    environment: python
+    script_path: scripts/audio/system_volume.py
+    modes: ["general", "streaming", "study"]
+
+  # Application Management
+  - key: app_launcher
+    name: Application Launcher
+    description: Launch, close, or switch between applications
+    keywords: ["open", "launch", "start", "close", "kill", "app", "application", "switch to"]
+    category: utility
+    environment: python
+    script_path: scripts/utility/app_launcher.py
+    ai_parsing: true
+    modes: ["general", "coding", "study"]
+    metadata:
+      common_apps:
+        - "notepad"
+        - "chrome"
+        - "discord"
+        - "obs"
+        - "visual studio code"
+
+  - key: window_manager
+    name: Window Management
+    description: Manage windows (resize, move, focus, minimize)
+    keywords: ["window", "resize", "move", "focus", "minimize", "maximize"]
+    category: utility
+    environment: autohotkey
+    script_path: scripts/utility/window_manager.ahk
+    modes: ["general", "coding"]
+
+  # Coding Commands
+  - key: git_operations
+    name: Git Operations
+    description: Git commands for version control
+    keywords: ["git", "commit", "push", "pull", "status", "branch", "checkout"]
+    category: coding
+    environment: python
+    script_path: scripts/coding/git_controller.py
+    ai_parsing: true
+    modes: ["coding"]
+    requires_confirmation: true
+    metadata:
+      dangerous_operations: ["push", "force push", "reset --hard"]
+
+  - key: code_search
+    name: Code Search
+    description: Search files using Everything or similar tools
+    keywords: ["find", "search", "locate", "file", "code"]
+    category: coding
+    environment: python
+    script_path: scripts/coding/file_search.py
+    modes: ["coding", "general"]
+
+  - key: bug_logger
+    name: Bug Logger
+    description: Create bug reports and log issues
+    keywords: ["bug", "issue", "problem", "error", "log"]
+    category: coding
+    environment: python
+    script_path: scripts/coding/bug_logger.py
+    ai_parsing: true
+    modes: ["coding"]
+
+  # Productivity Commands
+  - key: timer_control
+    name: Timer and Reminders
+    description: Set timers, alarms, and reminders
+    keywords: ["timer", "alarm", "remind", "notify", "break", "pomodoro"]
+    category: productivity
+    environment: python
+    script_path: scripts/productivity/timer.py
+    ai_parsing: true
+    modes: ["general", "study", "coding"]
+
+  - key: note_capture
+    name: Note Capture
+    description: Capture quick notes and voice memos
+    keywords: ["note", "memo", "remember", "write", "jot down"]
+    category: knowledge
+    environment: python
+    script_path: scripts/knowledge/note_capture.py
+    ai_parsing: true
+    modes: ["general", "study", "coding"]
+
+  - key: clipboard_manager
+    name: Clipboard Management
+    description: Enhanced clipboard operations
+    keywords: ["copy", "paste", "clipboard", "clip"]
+    category: utility
+    environment: autohotkey
+    script_path: scripts/utility/clipboard_manager.ahk
+    modes: ["general", "coding", "study"]
+
+  # Knowledge Management
+  - key: notion_sync
+    name: Notion Integration
+    description: Sync data with Notion databases
+    keywords: ["notion", "sync", "database", "update"]
+    category: knowledge
+    environment: python
+    script_path: scripts/knowledge/notion_sync.py
+    modes: ["general", "coding", "study"]
+    requires_confirmation: true
+
+  - key: obsidian_notes
+    name: Obsidian Notes
+    description: Create and manage Obsidian notes
+    keywords: ["obsidian", "markdown", "notes", "vault"]
+    category: knowledge
+    environment: python
+    script_path: scripts/knowledge/obsidian_manager.py
+    ai_parsing: true
+    modes: ["general", "study"]
+
+  # System Commands
+  - key: brightness_control
+    name: Display Brightness
+    description: Control display brightness
+    keywords: ["brightness", "dim", "bright", "display"]
+    category: system
+    environment: python
+    script_path: scripts/system/brightness.py
+    modes: ["general", "study"]
+
+  - key: mic_toggle
+    name: Microphone Toggle
+    description: Mute/unmute microphone
+    keywords: ["mic", "microphone", "mute mic", "unmute mic"]
+    category: audio
+    environment: autohotkey
+    script_path: scripts/audio/mic_toggle.ahk
+    modes: ["general", "streaming", "coding"]
+
+  - key: power_management
+    name: Power Management
+    description: System power operations (sleep, restart, shutdown)
+    keywords: ["sleep", "restart", "shutdown", "power", "hibernate"]
+    category: system
+    environment: system
+    script_path: shutdown
+    requires_confirmation: true
+    modes: ["general"]
+
+  # Web Search
+  - key: web_search
+    name: Web Search
+    description: Open browser with search queries
+    keywords: ["search", "google", "bing", "duckduckgo", "look up"]
+    category: utility
+    environment: python
+    script_path: scripts/utility/web_search.py
+    ai_parsing: true
+    modes: ["general", "study", "coding"]
+
+  # Mode Switching
+  - key: mode_switch
+    name: Mode Switching
+    description: Switch between assistant modes
+    keywords: ["mode", "switch to", "coding mode", "study mode", "streaming mode", "general mode"]
+    category: system
+    environment: python
+    script_path: scripts/system/mode_switch.py
+    ai_parsing: true
+    modes: ["general", "coding", "study", "streaming"]
+
+  # Help and Information
+  - key: help_system
+    name: Help System
+    description: Show available commands and help
+    keywords: ["help", "what can you do", "commands", "how to"]
+    category: utility
+    environment: python
+    script_path: scripts/utility/help_system.py
+    modes: ["general", "coding", "study", "streaming"]
+
+  # Streaming Specific
+  - key: obs_control
+    name: OBS Control
+    description: Control OBS Studio for streaming
+    keywords: ["obs", "stream", "record", "scene", "source"]
+    category: utility
+    environment: python
+    script_path: scripts/streaming/obs_control.py
+    ai_parsing: true
+    modes: ["streaming"]
+    requires_confirmation: true
+
+  # Development Tools
+  - key: project_opener
+    name: Project Opener
+    description: Open development projects in IDE
+    keywords: ["open project", "project", "ide", "workspace"]
+    category: coding
+    environment: python
+    script_path: scripts/coding/project_opener.py
+    ai_parsing: true
+    modes: ["coding"]
